@@ -27,6 +27,8 @@ Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
+
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
