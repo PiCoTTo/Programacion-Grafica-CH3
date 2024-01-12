@@ -31,7 +31,7 @@ public:
     Texture2D Texture;
     unsigned int Width, Height;
     // options
-    bool Confuse, Chaos, Shake;
+    bool Confuse, Chaos, Shake, Poison;
     // constructor
     PostProcessor(Shader shader, unsigned int width, unsigned int height);
     // prepares the postprocessor's framebuffer operations before rendering the game

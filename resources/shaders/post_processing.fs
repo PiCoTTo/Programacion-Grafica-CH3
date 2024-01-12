@@ -10,6 +10,7 @@ uniform float     blur_kernel[9];
 uniform bool chaos;
 uniform bool confuse;
 uniform bool shake;
+uniform bool poison;
 
 void main()
 {
@@ -36,6 +37,10 @@ void main()
         for(int i = 0; i < 9; i++)
             color += vec4(sample[i] * blur_kernel[i], 0.0f);
         color.a = 1.0f;
+    }
+    else if (poison)
+    {
+        color =  texture(scene, TexCoords);
     }
     else
     {

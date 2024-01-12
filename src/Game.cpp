@@ -70,7 +70,8 @@ void Game::Init()
     ResourceManager::LoadTexture("resources/textures/powerup_increase.png", true, "powerup_increase");
     ResourceManager::LoadTexture("resources/textures/powerup_confuse.png", true, "powerup_confuse");
     ResourceManager::LoadTexture("resources/textures/powerup_chaos.png", true, "powerup_chaos");
-    ResourceManager::LoadTexture("resources/textures/powerup_passthrough.png", true, "powerup_passthrough");// set render-specific controls
+    ResourceManager::LoadTexture("resources/textures/powerup_passthrough.png", true, "powerup_passthrough");
+    ResourceManager::LoadTexture("resources/textures/powerup_poison.png", true, "powerup_poison");
     // set render-specific controls
     Shader shader = ResourceManager::GetShader("sprite");
     Renderer = new SpriteRenderer(shader);
@@ -255,6 +256,13 @@ void Game::UpdatePowerUps(float dt)
                         Effects->Chaos = false;
                     }
                 }
+                else if (powerUp.Type == "poison")
+                {
+                    if (!IsOtherPowerUpActive(this->PowerUps, "poison"))
+                    {   // only reset if no other PowerUp of type poison is active
+                        Effects->Poison = false;
+                    }
+                }
             }
         }
     }
@@ -284,6 +292,8 @@ void Game::SpawnPowerUps(GameObject& block)
         this->PowerUps.push_back(PowerUp("confuse", glm::vec3(1.0f, 0.3f, 0.3f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_confuse")));
     if (ShouldSpawn(15))
         this->PowerUps.push_back(PowerUp("chaos", glm::vec3(0.9f, 0.25f, 0.25f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_chaos")));
+    if (ShouldSpawn(1)) // 1 in 1 chance
+        this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.5f, 0.5f, 0.5f), 5.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
 }
 
 void ActivatePowerUp(PowerUp& powerUp)
@@ -315,6 +325,11 @@ void ActivatePowerUp(PowerUp& powerUp)
     {
         if (!Effects->Confuse)
             Effects->Chaos = true;
+    }
+    else if (powerUp.Type == "poison")
+    {
+        if (!Effects->Poison)
+            Effects->Poison = true;
     }
 }
 
