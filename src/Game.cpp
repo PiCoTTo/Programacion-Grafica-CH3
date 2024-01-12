@@ -293,7 +293,7 @@ void Game::SpawnPowerUps(GameObject& block)
     if (ShouldSpawn(15))
         this->PowerUps.push_back(PowerUp("chaos", glm::vec3(0.9f, 0.25f, 0.25f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_chaos")));
     if (ShouldSpawn(1)) // 1 in 1 chance
-        this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.5f, 0.5f, 0.5f), 5.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
+        this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.7f, 0.7f, 0.7f), 5.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
 }
 
 void ActivatePowerUp(PowerUp& powerUp)
