@@ -1,5 +1,6 @@
 #version 330 core
 in  vec2  TexCoords;
+in  vec2  direction;
 out vec4  color;
   
 uniform sampler2D scene;
@@ -40,7 +41,18 @@ void main()
     }
     else if (poison)
     {
-        color =  texture(scene, TexCoords);
+        float redOffset   =  0.018;
+        float greenOffset =  0.012;
+        float blueOffset  = -0.012;
+        
+        vec2 texSize  = textureSize(scene, 0).xy;
+        vec2 texCoord = gl_FragCoord.xy / texSize;
+        
+        color = texture(scene, texCoord);
+        
+        color.r = texture(scene, texCoord + (direction * vec2(redOffset  ))).r;
+        color.g = texture(scene, texCoord + (direction * vec2(greenOffset))).g;
+        color.b = texture(scene, texCoord + (direction * vec2(blueOffset ))).b;
     }
     else
     {

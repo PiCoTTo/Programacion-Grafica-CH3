@@ -203,7 +203,7 @@ void Game::ResetPlayer()
     Player->Position = glm::vec2(this->Width / 2.0f - PLAYER_SIZE.x / 2.0f, this->Height - PLAYER_SIZE.y);
     Ball->Reset(Player->Position + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -(BALL_RADIUS * 2.0f)), INITIAL_BALL_VELOCITY);
     // also disable all active powerups
-    Effects->Chaos = Effects->Confuse = false;
+    Effects->Chaos = Effects->Confuse = Effects->Poison = false;
     Ball->PassThrough = Ball->Sticky = false;
     Player->Color = glm::vec3(1.0f);
     Ball->Color = glm::vec3(1.0f);
@@ -292,8 +292,8 @@ void Game::SpawnPowerUps(GameObject& block)
         this->PowerUps.push_back(PowerUp("confuse", glm::vec3(1.0f, 0.3f, 0.3f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_confuse")));
     if (ShouldSpawn(15))
         this->PowerUps.push_back(PowerUp("chaos", glm::vec3(0.9f, 0.25f, 0.25f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_chaos")));
-    if (ShouldSpawn(1)) // 1 in 1 chance
-        this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.7f, 0.7f, 0.7f), 5.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
+    if (ShouldSpawn(10))
+        this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.7f, 0.7f, 0.7f), 10.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
 }
 
 void ActivatePowerUp(PowerUp& powerUp)
@@ -318,17 +318,17 @@ void ActivatePowerUp(PowerUp& powerUp)
     }
     else if (powerUp.Type == "confuse")
     {
-        if (!Effects->Chaos)
+        if (!Effects->Chaos && !Effects->Poison)
             Effects->Confuse = true; // only activate if chaos wasn't already active
     }
     else if (powerUp.Type == "chaos")
     {
-        if (!Effects->Confuse)
+        if (!Effects->Confuse && !Effects->Poison)
             Effects->Chaos = true;
     }
     else if (powerUp.Type == "poison")
     {
-        if (!Effects->Poison)
+        if (!Effects->Chaos && !Effects->Confuse)
             Effects->Poison = true;
     }
 }

@@ -11,7 +11,7 @@
 #include <iostream>
 
 PostProcessor::PostProcessor(Shader shader, unsigned int width, unsigned int height)
-    : PostProcessingShader(shader), Texture(), Width(width), Height(height), Confuse(false), Chaos(false), Shake(false)
+    : PostProcessingShader(shader), Texture(), Width(width), Height(height), Confuse(false), Chaos(false), Shake(false), Poison(false)
 {
     // initialize renderbuffer/framebuffer object
     glGenFramebuffers(1, &this->MSFBO);
@@ -84,6 +84,7 @@ void PostProcessor::Render(float time)
     this->PostProcessingShader.SetInteger("confuse", this->Confuse);
     this->PostProcessingShader.SetInteger("chaos", this->Chaos);
     this->PostProcessingShader.SetInteger("shake", this->Shake);
+    this->PostProcessingShader.SetInteger("poison", this->Poison);
     // render textured quad
     glActiveTexture(GL_TEXTURE0);
     this->Texture.Bind();

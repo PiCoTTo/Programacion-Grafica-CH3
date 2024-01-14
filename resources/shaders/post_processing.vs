@@ -2,6 +2,7 @@
 layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>
 
 out vec2 TexCoords;
+out vec2 direction;
 
 uniform bool  chaos;
 uniform bool  confuse;
@@ -32,5 +33,10 @@ void main()
         float strength = 0.01;
         gl_Position.x += cos(time * 10) * strength;        
         gl_Position.y += cos(time * 15) * strength;        
+    }
+    if (poison)
+    {
+        direction.x = cos(time * 2);
+        direction.y = sin(time * 2);
     }
 }  
