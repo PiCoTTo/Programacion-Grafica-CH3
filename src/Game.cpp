@@ -348,17 +348,17 @@ void Game::SpawnPowerUps(GameObject& block)
 {
     if (ShouldSpawn(75)) // 1 in 75 chance
         this->PowerUps.push_back(PowerUp("speed", glm::vec3(0.5f, 0.5f, 1.0f), 0.0f, block.Position, ResourceManager::GetTexture("powerup_speed")));
-    if (ShouldSpawn(75))
+    else if (ShouldSpawn(75))
         this->PowerUps.push_back(PowerUp("sticky", glm::vec3(1.0f, 0.5f, 1.0f), 20.0f, block.Position, ResourceManager::GetTexture("powerup_sticky")));
-    if (ShouldSpawn(75))
+    else if (ShouldSpawn(75))
         this->PowerUps.push_back(PowerUp("pass-through", glm::vec3(0.5f, 1.0f, 0.5f), 10.0f, block.Position, ResourceManager::GetTexture("powerup_passthrough")));
-    if (ShouldSpawn(75))
+    else if (ShouldSpawn(75))
         this->PowerUps.push_back(PowerUp("pad-size-increase", glm::vec3(1.0f, 0.6f, 0.4), 0.0f, block.Position, ResourceManager::GetTexture("powerup_increase")));
-    if (ShouldSpawn(15)) // Negative powerups should spawn more often
+    else if (ShouldSpawn(15)) // Negative powerups should spawn more often
         this->PowerUps.push_back(PowerUp("confuse", glm::vec3(1.0f, 0.3f, 0.3f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_confuse")));
-    if (ShouldSpawn(15))
+    else if (ShouldSpawn(15))
         this->PowerUps.push_back(PowerUp("chaos", glm::vec3(0.9f, 0.25f, 0.25f), 15.0f, block.Position, ResourceManager::GetTexture("powerup_chaos")));
-    if (ShouldSpawn(10))
+    else if (ShouldSpawn(10))
         this->PowerUps.push_back(PowerUp("poison", glm::vec3(0.7f, 0.7f, 0.7f), 10.0f, block.Position, ResourceManager::GetTexture("powerup_poison")));
 }
 

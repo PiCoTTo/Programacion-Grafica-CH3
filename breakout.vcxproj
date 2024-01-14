@@ -124,17 +124,20 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)\include;$(SolutionDir)Dependencies\GLM_lib;$(SolutionDir)Dependencies\Irrklang\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\Irrklang\lib\Winx64-visualStudio;$(SolutionDir)Dependencies\FreeType\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\GLAD\src\glad.c" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\BallObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameLevel.cpp" />
