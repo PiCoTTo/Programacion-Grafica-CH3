@@ -428,7 +428,7 @@ void Game::DoCollisions()
         float distance = (Ball->Position.x + Ball->Radius) - centerBoard;
         float percentage = distance / (Player->Size.x / 2.0f);
         // then move accordingly
-        float strength = 2.0f;
+        float strength = 4.0f;
         glm::vec2 oldVelocity = Ball->Velocity;
         Ball->Velocity.x = INITIAL_BALL_VELOCITY.x * percentage * strength;
         //Ball->Velocity.y = -Ball->Velocity.y;
